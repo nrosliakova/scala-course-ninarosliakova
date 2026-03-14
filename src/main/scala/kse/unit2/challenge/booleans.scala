@@ -7,33 +7,33 @@ object booleans:
   case object True
   case object False
 
-  type True  = True.type
-  type False = False.type
+  type True    = True.type
+  type False   = False.type
   type Boolean = True | False
 
   val negation: Boolean => Boolean =
-      case True  => False
-      case False => True
+    case True  => False
+    case False => True
 
   val conjunction: (Boolean, => Boolean) => Boolean = (x, y) =>
     x match
-    case False => False
-    case True => y
+      case False => False
+      case True  => y
 
   val disjunction: (Boolean, => Boolean) => Boolean = (x, y) =>
     x match
-    case False => y
-    case True => True
+      case False => y
+      case True  => True
 
   val implication: (Boolean, => Boolean) => Boolean = (x, y) =>
     x match
-    case False => True
-    case True => y
+      case False => True
+      case True  => y
 
   val equivalence: (Boolean, => Boolean) => Boolean = (x, y) =>
     x match
-    case False => negation(y)
-    case True => y
+      case False => negation(y)
+      case True  => y
 
   extension (value: Boolean)
 
@@ -54,7 +54,7 @@ object booleans:
 
   def fold(operation: (Boolean, Boolean) => Boolean, unit: Boolean)(list: List[Boolean]): Boolean =
     list match
-      case Nil => unit
+      case Nil                => unit
       case head :: restOfList => operation(head, fold(operation, unit)(restOfList))
 
   val conjunctionOfElements: List[Boolean] => Boolean = fold((x, y) => x ∧ y, True)
