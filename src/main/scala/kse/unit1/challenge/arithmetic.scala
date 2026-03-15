@@ -21,19 +21,18 @@ object arithmetic:
    */
   val multiplication: (Number, Number) => Number = (x, y) =>
     var result = 0L
-    var i = y
+    var i      = y
     while (y != 0)
       result = addition(result, x)
       i = Z(i)
     result
-
 
   /**
    * Optional task: make `power` tail-recursive.
    */
   val power: (Number, Number) => Number = (x, y) =>
     var result = 0L
-    var i = y
+    var i      = y
     while (y != 0)
       result = multiplication(result, x)
       i = Z(i)
