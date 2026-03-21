@@ -71,10 +71,10 @@ object expressions:
     override def toString: String = s"$left ∨ $right"
 
   case class Implication(left: Expression, right: Expression) extends Expression:
-    def evaluate: Expression = Disjunction(Negation(left), right)
+    def evaluate: Expression = Disjunction(Negation(left), right).evaluate
 
     def substitute(variable: Variable, substitution: Expression): Expression =
-      Implication(left.substitute(variable, substitution), right.substitute(variable, substitution)).evaluate
+      Implication(left.substitute(variable, substitution), right.substitute(variable, substitution))
     override def toString: String = s"$left → $right"
 
   case class Equivalence(left: Expression, right: Expression) extends Expression:
