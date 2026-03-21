@@ -74,11 +74,11 @@ object expressions:
     def evaluate: Expression = Disjunction(Negation(left), right)
 
     def substitute(variable: Variable, substitution: Expression): Expression =
-      Implication(left.substitute(variable, substitution), right.substitute(variable, substitution))
+      Implication(left.substitute(variable, substitution), right.substitute(variable, substitution)).evaluate
     override def toString: String = s"$left → $right"
 
   case class Equivalence(left: Expression, right: Expression) extends Expression:
-    def evaluate: Expression = Conjunction(Implication(left, right), Implication(right, left))
+    def evaluate: Expression = Conjunction(Implication(left, right), Implication(right, left)).evaluate
 
     def substitute(variable: Variable, substitution: Expression): Expression =
       Equivalence(left.substitute(variable, substitution), right.substitute(variable, substitution))
