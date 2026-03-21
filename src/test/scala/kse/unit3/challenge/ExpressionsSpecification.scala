@@ -117,8 +117,8 @@ end EquivalenceEvaluationSpecification
 
 object BooleanSubstitutionSpecification extends Properties("Boolean Substitution"):
 
-  property("substitution into boolean should make no changes") = forAll: (boolean: Boolean, variable: Variable, sub: Expression) =>
-    boolean.substitute(variable, sub) == boolean
+  property("substitution into boolean should make no changes") = forAll:
+    (boolean: Boolean, variable: Variable, sub: Expression) => boolean.substitute(variable, sub) == boolean
 
 end BooleanSubstitutionSpecification
 
@@ -130,30 +130,30 @@ object VariableSubstitutionSpecification extends Properties("Variable Substituti
         v1.substitute(v2, substitution) == v1
       }
 
-  property("substitution into the same variable should return the given expression") = forAll: (variable: Variable, sub: Expression) =>
-    variable.substitute(variable, sub) == sub
+  property("substitution into the same variable should return the given expression") = forAll:
+    (variable: Variable, sub: Expression) => variable.substitute(variable, sub) == sub
 
 end VariableSubstitutionSpecification
 
 object ExpressionSubstitutionSpecification extends Properties("Expression Substitution"):
 
-  property("substitution into !expression should be equal to !(substitution into expression)") = forAll: (exp: Expression, v: Variable, sub: Expression) =>
-    (!exp).substitute(v, sub) == !(exp.substitute(v, sub))
+  property("substitution into !expression should be equal to !(substitution into expression)") = forAll:
+    (exp: Expression, v: Variable, sub: Expression) => (!exp).substitute(v, sub) == !(exp.substitute(v, sub))
 
-  property("substitution into left ∧ right should be equal to substitution into left ∧ substitution into right") = forAll:
-    (l: Expression, r: Expression, v: Variable, sub: Expression) =>
+  property("substitution into left ∧ right should be equal to substitution into left ∧ substitution into right") =
+    forAll: (l: Expression, r: Expression, v: Variable, sub: Expression) =>
       (l ∧ r).substitute(v, sub) == (l.substitute(v, sub) ∧ r.substitute(v, sub))
 
-  property("substitution into left ∨ right should be equal to substitution into left ∨ substitution into right") = forAll:
-    (l: Expression, r: Expression, v: Variable, sub: Expression) =>
+  property("substitution into left ∨ right should be equal to substitution into left ∨ substitution into right") =
+    forAll: (l: Expression, r: Expression, v: Variable, sub: Expression) =>
       (l ∨ r).substitute(v, sub) == (l.substitute(v, sub) ∨ r.substitute(v, sub))
 
-  property("substitution into left → right should be equal to substitution into left → substitution into right") = forAll:
-    (l: Expression, r: Expression, v: Variable, sub: Expression) =>
+  property("substitution into left → right should be equal to substitution into left → substitution into right") =
+    forAll: (l: Expression, r: Expression, v: Variable, sub: Expression) =>
       (l → r).substitute(v, sub) == (l.substitute(v, sub) → r.substitute(v, sub))
 
-  property("substitution into left ↔ right should be equal to substitution into left ↔ substitution into right") = forAll:
-    (l: Expression, r: Expression, v: Variable, sub: Expression) =>
+  property("substitution into left ↔ right should be equal to substitution into left ↔ substitution into right") =
+    forAll: (l: Expression, r: Expression, v: Variable, sub: Expression) =>
       (l ↔ r).substitute(v, sub) == (l.substitute(v, sub) ↔ r.substitute(v, sub))
 
 end ExpressionSubstitutionSpecification
