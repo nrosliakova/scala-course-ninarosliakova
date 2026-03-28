@@ -56,7 +56,7 @@ object numerals:
     override def equals(obj: Any): Boolean =
       obj match
         case Zero => true
-        case _ => false
+        case _    => false
 
   object Successor:
     def unapply(successor: Successor): Option[Numeral] = Option(successor.predecessor)

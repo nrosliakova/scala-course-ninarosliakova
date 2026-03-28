@@ -9,10 +9,10 @@ object generators:
   lazy val genZero: Gen[Zero] = Gen.const(Zero)
 
   lazy val genSuccessor: Gen[Successor] =
-    Gen.sized {
-    size => val smaller = (size - 1).max(0)
-    Gen.resize(smaller, genNumeral).map(n => Successor(n))
-  }
+    Gen.sized { size =>
+      val smaller = (size - 1).max(0)
+      Gen.resize(smaller, genNumeral).map(n => Successor(n))
+    }
 
   lazy val genNumeral: Gen[Numeral] =
     Gen.frequency(1 -> lzy(genZero), 1 -> lzy(genSuccessor))
